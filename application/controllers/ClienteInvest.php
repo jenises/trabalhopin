@@ -16,7 +16,7 @@ class ClienteInvest extends CI_Controller
 //            redirect('mapos/login');
 //        }
             $this->load->helper(array('codegen_helper'));;
-            $this->load->model('clienteinvest_model', '', true);
+            $this->load->model('ClienteInvest_model', '', true);
             $this->data['menuClienteInvest'] = 'clienteinvest';
     }
     
@@ -37,7 +37,7 @@ class ClienteInvest extends CI_Controller
         
    
         $config['base_url'] = base_url().'index.php/clienteinvest/gerenciar/';
-        $config['total_rows'] = $this->clienteinvest_model->count('clienteinvest');
+        $config['total_rows'] = $this->ClienteInvest_model->count('clienteinvest');
         $config['per_page'] = 10;
         $config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
@@ -60,8 +60,8 @@ class ClienteInvest extends CI_Controller
         
         $this->pagination->initialize($config);
         
-        $this->data['results'] = $this->clienteinvest_model->get('clienteinvest', 'idclienteinvest,nomecliente, sexo, pessoa_fisica, documento,telefone,celular,email,datacadastro, rua,numero,bairro,cidade,estado,cep', '', $config['per_page'], $this->uri->segment(3));
-        $this->data['view'] = 'clienteinvest/clienteinvest';
+        $this->data['results'] = $this->ClienteInvest_model->get('clienteinvest', 'idclienteinvest,nomecliente, sexo, pessoa_fisica, documento,telefone,celular,email,datacadastro, rua,numero,bairro,cidade,estado,cep', '', $config['per_page'], $this->uri->segment(3));
+        $this->data['view'] = 'clienteinvest/ClienteInvest';
         $this->load->view('tema/topo', $this->data);
     }
     
