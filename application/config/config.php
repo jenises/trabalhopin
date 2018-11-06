@@ -28,8 +28,8 @@ $config['app_version'] = '3.1.12';
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/pin1';
-
+//$config['base_url'] = 'http://127.0.0.1/pin1';
+  $config['base_url'] = "https://trabalhopin.herokuapp.com/";
 /*
 |--------------------------------------------------------------------------
 | Index File
