@@ -67,6 +67,7 @@ class ClienteInvest extends CI_Controller
     
     function adicionar()
     {
+        exit("adicionar");
        // if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {
             //$this->session->set_flashdata('error', 'Você não tem permissão para adicionar clientes.');
          //   redirect(base_url());
