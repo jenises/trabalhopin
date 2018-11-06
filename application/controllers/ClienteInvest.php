@@ -98,12 +98,12 @@ class ClienteInvest extends CI_Controller
 
             if ($this->clienteinvest_model->add('clienteinvest', $data) == true) {
                 $this->session->set_flashdata('success', 'Cliente Investidor adicionado com sucesso!');
-                redirect(base_url() . 'index.php/clienteinvest/adicionarCliente/');
+                redirect(base_url() . 'index.php/clienteinvest/AdicionarCliente/');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
-        $this->data['view'] = 'clienteinvest/adicionarCliente';
+        $this->data['view'] = 'clienteinvest/AdicionarCliente';
         $this->load->view('tema/topo', $this->data);
 
     }
