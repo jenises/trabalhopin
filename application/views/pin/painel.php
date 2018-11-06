@@ -10,10 +10,9 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <?php //if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) { ?>
             <li class="bg_lb"> <a href="<?php echo base_url()?>index.php/clienteinvest"> <i class="icon-group"></i> Cliente Investidor</a> </li>
 
-        <?php// } ?>
+       
         <!--?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>>-->
             <li class="bg_lg"> <a href="<?php echo base_url()?>index.php/ClienteEmp"> <i class="icon-group"></i> Cliente Empreendedor</a> </li>
         <!--?php } ?>!-->
