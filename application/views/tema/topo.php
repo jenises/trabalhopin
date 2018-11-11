@@ -20,7 +20,7 @@
 
         <!--Header-part-->
         <div id="header">
-            <h1><a href="">Pin I</a></h1>
+            <h1></h1>
         </div>
         <!--close-Header-part--> 
 
@@ -75,7 +75,7 @@
                     if (isset($menuProdutos)) {
                         echo 'active';
                     };
-                    ?>"><a href="#"><i class="icon icon-barcode"></i> <span>Clientes Empreendedores</span></a></li>
+                    ?>"><a href="index.php/ClienteEmp"><i class="icon icon-barcode"></i> <span>Clientes Empreendedores</span></a></li>
                     <?php //} ?>
 
 

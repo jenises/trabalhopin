@@ -1,6 +1,6 @@
 <?php
 
-class ClienteInvest extends CI_Controller
+class ClienteEmp extends CI_Controller
 {
     
     /**
@@ -16,8 +16,8 @@ class ClienteInvest extends CI_Controller
 //            redirect('mapos/login');
 //        }
             $this->load->helper(array('codegen_helper'));;
-            $this->load->model('ClienteInvest_model', '', true);
-            $this->data['menuClienteInvest'] = 'clienteinvest';
+            $this->load->model('ClienteEmp_model', '', true);
+            $this->data['menuClienteEmp'] = 'clienteemp';
     }
     
     function index()
@@ -36,8 +36,8 @@ class ClienteInvest extends CI_Controller
         $this->load->library('pagination');
         
    
-        $config['base_url'] = base_url().'index.php/clienteinvest/gerenciar/';
-        $config['total_rows'] = $this->ClienteInvest_model->count('clienteinvest');
+        $config['base_url'] = base_url().'index.php/clienteemp/gerenciar/';
+        $config['total_rows'] = $this->ClienteEmp_model->count('clienteemp');
         $config['per_page'] = 10;
         $config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
@@ -60,8 +60,8 @@ class ClienteInvest extends CI_Controller
         
         $this->pagination->initialize($config);
         
-        $this->data['results'] = $this->ClienteInvest_model->get('clienteinvest', 'idclienteinvest,nomecliente, sexo, pessoa_fisica, documento,telefone,celular,email,datacadastro, rua,numero,bairro,cidade,estado,cep', '', $config['per_page'], $this->uri->segment(3));
-        $this->data['view'] = 'clienteinvest/ClienteInvest';
+        $this->data['results'] = $this->ClienteEmp_model->get('clienteemp', 'clienteemp.idclienteemp,nome, telefone, clienteemp.endereco, data_nascimento,cpf,rg', '', $config['per_page'], $this->uri->segment(3));
+        $this->data['view'] = 'clienteemp/ClienteEmp';
         $this->load->view('tema/topo', $this->data);
     }
     
