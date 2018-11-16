@@ -173,7 +173,7 @@ class ClienteEmp extends CI_Controller
 
 */
         $this->data['custom_error'] = '';
-        $this->data['result'] = $this->clienteemp_model->getById($this->uri->segment(3));
+        $this->data['result'] = $this->ClienteEmp_model->getById($this->uri->segment(3));
         //$this->data['results'] = $this->clienteinvest_model->getOsByCliente($this->uri->segment(3));
         $this->data['view'] = 'clienteemp/visualizar_clienteemp';
         $this->load->view('tema/topo', $this->data);
