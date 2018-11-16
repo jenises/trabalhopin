@@ -62,7 +62,7 @@ class ClienteEmp extends CI_Controller
          
         $this->pagination->initialize($config);
         */
-        $this->data['results'] = $this->clienteemp_model->get('clienteemp', 'clienteemp.idclienteemp, perfilemp.descricao, perfilemp.ramo_atividade, perfilemp.produtos, imagem', '', $config['per_page'], $this->uri->segment(3));
+        $this->data['results'] = $this->ClienteEmp_model->get('clienteemp', 'clienteemp.idclienteemp, perfilemp.descricao, perfilemp.ramo_atividade, perfilemp.produtos, imagem', '', $config['per_page'], $this->uri->segment(3));
         $this->data['view'] = 'clienteemp/ClienteEmp';
         $this->load->view('tema/topo', $this->data);
     }
