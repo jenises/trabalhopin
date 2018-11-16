@@ -122,7 +122,7 @@
                         <div class="span12" style="padding: 1%; margin-left: 0">
                             <div class="span6 offset3" style="text-align: center">
                                 <a href="#modalLogar" data-toggle="modal" class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>
-                                <a href="<?php echo base_url() ?>index.php/clienteemp" id="" class="btn btn-large"><i class="icon-arrow-left"></i> Voltar</a>
+                                <a href="<?php echo base_url() ?>index.php/ClienteEmp" id="" class="btn btn-large"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
             </div>
