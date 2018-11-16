@@ -3,7 +3,7 @@
     <div class="widget-title">
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#tab1">Dados do Empreendedor</a></li>
-            <li><a data-toggle="tab" href="#tab2">Empresas que já investiram</a></li>
+            <!--<li><a data-toggle="tab" href="#tab2">Empresas que já investiram</a></li>-->
             <div class="buttons">
                     <?php //if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
                        // echo '<a title="Icon Title" class="btn btn-mini btn-info" href="'.base_url().'index.php/clientesinvest/editar/'.$result->idclienteinvest.'"><i class="icon-pencil icon-white"></i> Editar</a>';
