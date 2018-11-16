@@ -20,7 +20,7 @@ class ClienteEmp_model extends CI_Model
         $this->db->select($fields);
         $this->db->from($table);
         $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp');
-        $this->db->order_by('idclienteemp', 'desc');
+        $this->db->order_by('clienteemp.idclienteemp', 'desc');
         $this->db->limit($perpage, $start);
         if ($where) {
             $this->db->where($where);
@@ -34,9 +34,11 @@ class ClienteEmp_model extends CI_Model
 
     function getById($id)
     {
-        $this->db->where('idclienteemp', $id);
+        $this->db->select('clienteemp.*, perfilemp.*');
+        $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp');
+        $this->db->where('clienteemp.idclienteemp', $id);
         $this->db->limit(1);
-        return $this->db->get('idclienteemp')->row();
+        return $this->db->get('clienteemp')->row();
     }
     
     function add($table, $data)

@@ -10,7 +10,7 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-            <li class="bg_lb"> <a href="<?php echo base_url()?>index.php/ClienteInvest"> <i class="icon-group"></i> Cliente Investidor</a> </li>
+            <li class="bg_lb"> <a href="<?php  echo base_url()?>index.php/ClienteInvest"> <i class="icon-group"></i> Cliente Investidor</a> </li>
 
        
         <!--?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>>-->

@@ -171,7 +171,7 @@ class ClienteInvest extends CI_Controller
 
 */
         $this->data['custom_error'] = '';
-        $this->data['result'] = $this->clienteinvest_model->getById($this->uri->segment(3));
+        $this->data['result'] = $this->clienteemp_model->getById($this->uri->segment(3));
         //$this->data['results'] = $this->clienteinvest_model->getOsByCliente($this->uri->segment(3));
         $this->data['view'] = 'clienteinvest/visualizar_clienteinvest';
         $this->load->view('tema/topo', $this->data);
