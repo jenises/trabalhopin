@@ -16,7 +16,7 @@ class ClienteEmp extends CI_Controller
 //            redirect('mapos/login');
 //        }
             $this->load->helper(array('codegen_helper'));;
-            $this->load->model('clienteemp_model', '', true);
+            $this->load->model('ClienteEmp_model', '', true);
             $this->data['menuClienteEmp'] = 'clienteemp';
     }
     
