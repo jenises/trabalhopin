@@ -37,7 +37,7 @@ class ClienteEmp extends CI_Controller
         
    
         $config['base_url'] = base_url().'index.php/clienteemp/gerenciar/';
-        $config['total_rows'] = $this->clienteemp_model->count('clienteemp');
+        $config['total_rows'] = $this->ClienteEmp_model->count('clienteemp');
         $config['per_page'] = 10;
         /*$config['next_link'] = 'Próxima';
         $config['prev_link'] = 'Anterior';
