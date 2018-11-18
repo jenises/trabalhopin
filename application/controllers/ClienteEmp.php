@@ -98,14 +98,14 @@ class ClienteEmp extends CI_Controller
             $id = $this->ClienteEmp_model->add('clienteemp', $data);
             if ($id >= 0) {
                 $this->session->set_flashdata('success', 'Cliente Empreendedor pré-cadastrado com sucesso!<br> Adicione agora as informações de perfil do empreededor.');
-                redirect(base_url() . 'index.php/clienteemp/editar/'.$id);
+                redirect(base_url() . 'index.php/ClientEemp/editar/'.$id);
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
         
         
-        $this->data['view'] = 'clienteemp/AdicionarCliente';
+        //$this->data['view'] = 'clienteemp/AdicionarCliente';
         $this->load->view('tema/topo', $this->data);
 
     }
