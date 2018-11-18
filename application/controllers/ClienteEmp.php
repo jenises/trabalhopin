@@ -415,7 +415,7 @@ class ClienteEmp extends CI_Controller
             //exit(var_dump($_POST));
             if ($this->ClienteEmp_model->AtualizaPerfil($data, $this->input->post('idclienteemp')) == true) {
                 $this->session->set_flashdata('success', 'Dados do Perfil do Cliente Empreendedor atualizado com sucesso!');
-                redirect(base_url() . 'index.php/clienteemp/editar/'.$id);
+                redirect(base_url() . 'index.php/ClienteEmp/editar/'.$id);
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
