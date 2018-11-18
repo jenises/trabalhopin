@@ -27,12 +27,12 @@
         <!--top-Header-menu-->
         <div id="user-nav" class="navbar navbar-inverse">
             <ul class="nav">
+                
+                 <li class="">
+                     <a title="" href="<?php echo site_url(); ?>/mapos/minhaConta">
+                         <i class="icon icon-star"></i> <span class="text">Cadastre-se </span>
+                     </a></li>       
 
-             <!--   <li class=""><a title="" href="<?php echo site_url(); ?>/mapos/minhaConta"><i class="icon icon-star"></i> <span class="text">Minha Conta </span></a></li>
-                <li class=""><a title="" href="<?php echo site_url(); ?>/mine"><i class="icon icon-eye-open"></i> <span class="text">Área do Cliente</span></a></li>
-                <li class="pull-right"><a href="https://github.com/RamonSilva20/mapos" target="_blank"><i class="icon icon-asterisk"></i> <span class="text">Versão: <?php echo $this->config->item('app_version'); ?></span></a></li>
-                <li class=""><a title="" href="<?php echo site_url(); ?>/mapos/sair"><i class="icon icon-share-alt"></i> <span class="text">Sair do Sistema</span></a></li>
--->
             </ul>
 
         </div>
@@ -67,15 +67,15 @@
                     if (isset($menuClienteInvest)) {
                         echo 'active';
                     };
-                    ?>"><a href="<?php echo base_url() ?>index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>
+                    ?>"><a href="#modalCadastrar" data-toggle="modal"><i class="icon icon-group"></i> <span>Cadastre-se </span></a></li>
                     <?php //} ?>
-
+                    <li><a href="<?php echo base_url() ?>index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>
                 <!--<?php// if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>!-->
                     <li class="<?php
                     if (isset($menuProdutos)) {
                         echo 'active';
                     };
-                    ?>"><a href="index.php/ClienteEmp"><i class="icon icon-barcode"></i> <span>Clientes Empreendedores</span></a></li>
+                    ?>"><a href="<?php echo base_url() ?>index.php/ClienteEmp"><i class="icon icon-barcode"></i> <span>Clientes Empreendedores</span></a></li>
                     <?php //} ?>
 
 
@@ -224,6 +224,30 @@
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
         <script src="<?php echo base_url(); ?>assets/js/matrix.js"></script> 
 
+        
+        
+        <div id="modalCadastrar" class="modal hide fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/logar" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">PIN Smart Invest  - Escolha o tipo de cliente</h3>
+            </div>
+            <div class="modal-body  " >
+                    <ul class="quick-actions ">
+                        <li class="bg_lb "> <a href="<?php  echo base_url()?>index.php/ClienteInvest"> <i class="icon-group"></i>&nbsp;&nbsp;&nbsp; Eu sou Cliente Investidor&nbsp;&nbsp&nbsp;</a> </li>
+                        <li class="bg_lg"> <a href="<?php echo base_url()?>index.php/ClienteEmp/cadastrar"> <i class="icon-group"></i>&nbsp; Eu sou  Cliente Empreendedor</a> </li>
+                    </ul>
+            </div>
+<!--            <div class="modal-footer">
+                <button class="btn btn-large btn-primary pull-left" data-dismiss="modal" aria-hidden="true" style="">Cadastre-se</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <button class="btn btn-success">Logar</button>
+            </div>
+!-->
+        </form>
+    </div>
+        
+        
 
     </body>
 </html>

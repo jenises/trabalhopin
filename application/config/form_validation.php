@@ -1,5 +1,5 @@
 <?php
-$config = array('clienteinvest' => array(array(
+$config =  array('clienteinvest' => array(array(
                                     'field'=>'nomeCliente',
                                     'label'=>'Nome',
                                     'rules'=>'required|trim'
@@ -47,6 +47,37 @@ $config = array('clienteinvest' => array(array(
                                 array(
                                     'field'=>'cep',
                                     'label'=>'CEP',
+                                    'rules'=>'required|trim'
+                                ))
+                ,
+                'clienteemp' => array(array(
+                                    'field'=>'nome',
+                                    'label'=>'Nome',
+                                    'rules'=>'required|trim'
+                                ),
+                                array(
+                                    'field'=>'cpf',
+                                    'label'=>'CPF',
+                                    'rules'=>'required|trim|is_unique[clienteemp.cpf]'
+                                ),
+                                array(
+                                    'field'=>'telefone',
+                                    'label'=>'Telefone',
+                                    'rules'=>'required|trim'
+                                ),
+                                array(
+                                    'field'=>'endereco',
+                                    'label'=>'Endereço',
+                                    'rules'=>'required|trim'
+                                ),
+                                array(
+                                    'field'=>'rg',
+                                    'label'=>'Rg',
+                                    'rules'=>'required|trim'
+                                ),
+                                array(
+                                    'field'=>'senha',
+                                    'label'=>'Senha',
                                     'rules'=>'required|trim'
                                 ))
                 ,
@@ -291,4 +322,16 @@ $config = array('clienteinvest' => array(array(
                                     'label'=>'usuarios_id',
                                     'rules'=>'trim|required'
                                 ))
+                ,
+                'logar' => array(array(
+                                    'field' => 'cpf',
+                                    'lebel' => 'CPF',
+                                    'rules' => 'trim|required'
+                                ),
+                                array(
+                                    'field' => 'senha',
+                                    'label' => 'Senha',
+                                    'rules' => 'trim|required'
+                                ))
+                
         );

@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Jhenises/PHP/pin1/application/models/ClienteInvest_model.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/conecte/cadastrar.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/config/config.php</file>
             <file>file:/C:/Users/Jhenises/PHP/pin1/application/controllers/ClienteInvest.php</file>
-            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/clienteemp/ClienteEmp.php</file>
             <file>file:/C:/Users/Jhenises/PHP/pin1/application/models/ClienteEmp_model.php</file>
-            <file>file:/C:/Users/Jhenises/PHP/pin1/application/models/Permissoes_model.php</file>
             <file>file:/C:/Users/Jhenises/PHP/pin1/application/controllers/ClienteEmp.php</file>
-            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/pin/painel.php</file>
-            <file>file:/C:/Users/Jhenises/PHP/pin1/application/controllers/Pin.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/clienteemp/editar_clienteemp.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/tema/topo.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/models/Vendas_model.php</file>
             <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/clienteemp/visualizar_clienteemp.php</file>
+            <file>file:/C:/Users/Jhenises/PHP/pin1/application/views/clienteinvest/editarCliente.php</file>
         </group>
     </open-files>
 </project-private>

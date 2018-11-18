@@ -96,9 +96,9 @@ class ClienteInvest extends CI_Controller
                 
             );
 
-            if ($this->clienteinvest_model->add('clienteinvest', $data) == true) {
+            if ($this->ClienteInvest_model->add('clienteinvest', $data) == true) {
                 $this->session->set_flashdata('success', 'Cliente Investidor adicionado com sucesso!');
-                redirect(base_url() . 'index.php/clienteinvest/AdicionarCliente/');
+                redirect(base_url() . 'index.php/clienteinvest/adicionar/');
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
@@ -242,5 +242,18 @@ class ClienteInvest extends CI_Controller
 
             $this->session->set_flashdata('success', 'Cliente excluido com sucesso!');
             redirect(base_url().'index.php/cliente/gerenciar/');
+    }
+    
+    function logar() {
+        
+        $this->load->library('form_validation');
+        $this->data['custom_error'] = '';
+        $urlAtual = $this->input->post('urlAtual');
+        if ($this->form_validation->run('logar') == false) {
+            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+        } else {
+            $this->session->set_flashdata('success', 'Você está logado!');
+            redirect(base_url().'index.php/ClienteEmp/');
+        }
     }
 }

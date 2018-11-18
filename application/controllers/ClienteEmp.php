@@ -67,45 +67,45 @@ class ClienteEmp extends CI_Controller
         $this->load->view('tema/topo', $this->data);
     }
     
-    function adicionar()
-    {
+    function adicionar() {
+        $id = 0;
        // if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {
             //$this->session->set_flashdata('error', 'Você não tem permissão para adicionar clientes.');
          //   redirect(base_url());
         //}
-
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
-
-        if ($this->form_validation->run('clienteinvest') == false) {
+        if ($this->form_validation->run('clienteemp') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
             $data = array(
-                'nomecliente' => set_value('nomeCliente'),
-                'sexo' => set_value('sexo'),
-                'pessoa_fisica' => ($this->input->post('pessoa_fisica') == 'v'? true : false),
-                'documento' => set_value('documento'),
+                'nome' => set_value('nome'),
+//                'sexo' => set_value('sexo'),
+//                'pessoa_fisica' => ($this->input->post('pessoa_fisica') == 'v'? true : false),
+//                'documento' => set_value('documento'),
                 'telefone' => set_value('telefone'),
-                'celular' => $this->input->post('celular'),
-                'email' => set_value('email'),
-                'rua' => set_value('rua'),
-                'datacadastro' => date('Y-m-d'),
-                'numero' => set_value('numero'),
-                'bairro' => set_value('bairro'),
-                'cidade' => set_value('cidade'),
-                'estado' => set_value('estado'),
-                'cep' => set_value('cep')
+//                'celular' => $this->input->post('celular'),
+//                'email' => set_value('email'),
+                'endereco' => set_value('rua'),
+//                'datacadastro' => date('Y-m-d'),
+                'rg' => set_value('numero'),
+//                'bairro' => set_value('bairro'),
+//                'cidade' => set_value('cidade'),
+//                'estado' => set_value('estado'),
+                'senha' => set_value('senha')
                 
             );
-
-            if ($this->clienteinvest_model->add('clienteinvest', $data) == true) {
-                $this->session->set_flashdata('success', 'Cliente Investidor adicionado com sucesso!');
-                redirect(base_url() . 'index.php/clienteinvest/AdicionarCliente/');
+            $id = $this->ClienteEmp_model->add('clienteemp', $data);
+            if ($id >= 0) {
+                $this->session->set_flashdata('success', 'Cliente Empreendedor adicionado com sucesso!');
+                redirect(base_url() . 'index.php/clienteemp/editar/'.$id);
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
             }
         }
-        $this->data['view'] = 'clienteinvest/AdicionarCliente';
+        
+        
+        $this->data['view'] = 'clienteemp/AdicionarCliente';
         $this->load->view('tema/topo', $this->data);
 
     }
@@ -115,46 +115,50 @@ class ClienteEmp extends CI_Controller
 
         if (!$this->uri->segment(3) || !is_numeric($this->uri->segment(3))) {
             $this->session->set_flashdata('error', 'Item não pode ser encontrado, parâmetro não foi passado corretamente.');
-            redirect('mapos');
+            redirect('pin');
         }
 
 
-        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar clientes.');
-            redirect(base_url());
-        }
+   //     if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
+   //         $this->session->set_flashdata('error', 'Você não tem permissão para editar clientes.');
+   //         redirect(base_url());
+   //     }
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
 
-        if ($this->form_validation->run('clientes') == false) {
+        if ($this->form_validation->run('clienteemp') == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
         } else {
             $data = array(
-                'nomeCliente' => $this->input->post('nomeCliente'),
-                'documento' => $this->input->post('documento'),
-                'telefone' => $this->input->post('telefone'),
-                'celular' => $this->input->post('celular'),
-                'email' => $this->input->post('email'),
-                'rua' => $this->input->post('rua'),
-                'numero' => $this->input->post('numero'),
-                'bairro' => $this->input->post('bairro'),
-                'cidade' => $this->input->post('cidade'),
-                'estado' => $this->input->post('estado'),
-                'cep' => $this->input->post('cep')
+                'nome' => set_value('nome'),
+//                'sexo' => set_value('sexo'),
+//                'pessoa_fisica' => ($this->input->post('pessoa_fisica') == 'v'? true : false),
+//                'documento' => set_value('documento'),
+                'telefone' => set_value('telefone'),
+//                'celular' => $this->input->post('celular'),
+//                'email' => set_value('email'),
+                'endereco' => set_value('rua'),
+//                'datacadastro' => date('Y-m-d'),
+                'rg' => set_value('numero'),
+//                'bairro' => set_value('bairro'),
+//                'cidade' => set_value('cidade'),
+//                'estado' => set_value('estado'),
+                'senha' => set_value('senha')
+                
             );
 
-            if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
+            if ($this->ClienteEmp_model->edit('clienteemo', $data, 'idClientes', $this->input->post('idClientes')) == true) {
                 $this->session->set_flashdata('success', 'Cliente editado com sucesso!');
-                redirect(base_url() . 'index.php/clientes/editar/'.$this->input->post('idClientes'));
+                redirect(base_url() . 'index.php/ClienteEmp/editar_clienteemp/'.$this->input->post('idclienteemp'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
             }
         }
 
 
-        $this->data['result'] = $this->clientes_model->getById($this->uri->segment(3));
-        $this->data['view'] = 'clienteemp/editarCliente';
+        $this->data['result'] = $this->ClienteEmp_model->getById($this->uri->segment(3));
+        $this->data['view'] = 'clienteemp/editar_clienteemp';
         $this->load->view('tema/topo', $this->data);
 
     }
@@ -180,6 +184,8 @@ class ClienteEmp extends CI_Controller
 
         
     }
+    
+    
     
     public function excluir()
     {
@@ -245,4 +251,172 @@ class ClienteEmp extends CI_Controller
             $this->session->set_flashdata('success', 'Cliente excluido com sucesso!');
             redirect(base_url().'index.php/cliente/gerenciar/');
     }
+    
+    
+        public function cadastrar() {
+            $this->load->model('ClienteEmp_model', '', true);
+            $this->load->library('form_validation');
+            $this->data['custom_error'] = '';
+
+        if ($this->form_validation->run('clienteemp') == false) {
+            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+        } else {
+             exit("ddd");
+        /*    $data = array(
+                'nomeCliente' => set_value('nomeCliente'),
+                'documento' => set_value('documento'),
+                'telefone' => set_value('telefone'),
+                'celular' => $this->input->post('celular'),
+                'email' => set_value('email'),
+                'rua' => set_value('rua'),
+                'numero' => set_value('numero'),
+                'bairro' => set_value('bairro'),
+                'cidade' => set_value('cidade'),
+                'estado' => set_value('estado'),
+                'cep' => set_value('cep'),
+                'dataCadastro' => date('Y-m-d')
+            );
+
+            if ($this->clientes_model->add('clientes', $data) == true) {
+                $this->session->set_flashdata('success', 'Cliente adicionado com sucesso!');
+                redirect(base_url() . 'index.php/mine');
+            } else {
+               
+                $this->session->set_flashdata('success', 'Cliente adicionado com sucesso!');
+            }
+         * */
+        }
+        $data = ''; 
+        $this->load->view('clienteemp/cadastrar_emp', $data);
+    }
+    
+      public function addPerfil()
+    {
+
+        
+        $preco = $this->input->post('preco');
+        $quantidade = $this->input->post('quantidade');
+        $subtotal = $preco * $quantidade;
+        $produto = $this->input->post('idProduto');
+        $data = array(
+            'quantidade'=> $quantidade,
+            'subTotal'=> $subtotal,
+            'produtos_id'=> $produto,
+            'os_id'=> $this->input->post('idOsProduto'),
+        );
+
+        if ($this->os_model->add('produtos_os', $data) == true) {
+            $sql = "UPDATE produtos set estoque = estoque - ? WHERE idProdutos = ?";
+            $this->db->query($sql, array($quantidade, $produto));
+            
+            echo json_encode(array('result'=> true));
+        } else {
+            echo json_encode(array('result'=> false));
+        }
+      
+    }
+    
+    public function addLogo(){
+        
+//        if ((!session_id()) || (!$this->session->userdata('logado'))) {
+//            redirect('mapos/login');
+//        }
+//
+//        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'cEmitente')) {
+//            $this->session->set_flashdata('error', 'Você não tem permissão para configurar emitente.');
+//            redirect(base_url());
+//        }
+
+        $id = $this->input->post('idclienteemp');
+        if ($id == null || !is_numeric($id)) {
+            $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar a logomarca.');
+            redirect(base_url().'index.php/mapos/emitente');
+        }
+        $this->load->helper('file');
+        //delete_files(FCPATH .'assets/uploads/');
+
+        $image = $this->logo_upload();
+        $logo = 'assets/img/emp/'.$image;
+
+        $retorno = $this->ClienteEmp_model->AtualizaLogo($id, $logo);
+        if ($retorno) {
+
+            $this->session->set_flashdata('success', 'As informações foram alteradas com sucesso.');
+            
+        } else {
+            $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar as informações.');
+            //redirect(base_url().'index.php/mapos/emitente');
+        }
+        redirect(base_url().'index.php/ClienteEmp/editar/'.$id);
+
+    }
+
+    function logo_upload() {
+
+/*        if ((!session_id()) || (!$this->session->userdata('logado'))) {
+            redirect('mapos/login');
+        }
+
+        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'cEmitente')) {
+            $this->session->set_flashdata('error', 'Você não tem permissão para configurar emitente.');
+            redirect(base_url());
+        }
+ * */
+ 
+        $this->load->library('upload');
+
+        $image_upload_folder = FCPATH . 'assets/img/emp';
+
+        if (!file_exists($image_upload_folder)) {
+            mkdir($image_upload_folder, DIR_WRITE_MODE, true);
+        }
+
+        $this->upload_config = array(
+            'upload_path'   => $image_upload_folder,
+            'allowed_types' => 'png|jpg|jpeg|bmp',
+            'max_size'      => 2048,
+            'remove_space'  => true,
+            'encrypt_name'  => true,
+        );
+
+        $this->upload->initialize($this->upload_config);
+
+        if (!$this->upload->do_upload()) {
+            $upload_error = $this->upload->display_errors();
+            print_r($upload_error);
+            exit();
+        } else {
+            $file_info = array($this->upload->data());
+            return $file_info[0]['file_name'];
+        }
+
+    }
+    
+    function AlteraPerfil() {
+        $this->load->library('form_validation');
+        $this->data['custom_error'] = '';
+//        if ($this->form_validation->run('clienteemp') == false) {
+//            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+//        } else {
+            $data = array(
+                'descricao' => $this->input->post('descricao'),
+                'produtos' => $this->input->post('produtos'),
+                'servicos' => $this->input->post('servicos'),
+                'qtd_func' => (trim($this->input->post('qtd_func')) == "") ? "0" : $this->input->post('qtd_func'),
+                'qtd_clientes' => (trim($this->input->post('qtd_clientes')) == "") ? "0" : $this->input->post('qtd_clientes'),
+                'linkedin' => $this->input->post('linkedin'),
+                'servicos' => $this->input->post('servicos'),
+                'objetivo' => $this->input->post('objetivo'),
+                'visao' => $this->input->post('visao'),
+                'ramo_atividade' => $this->input->post('ramo_atividade')
+                
+            );
+            //exit(var_dump($_POST));
+            if ($this->ClienteEmp_model->AtualizaPerfil($data, $this->input->post('idclienteemp')) == true) {
+                $this->session->set_flashdata('success', 'Dados do Perfil do Cliente Empreendedor atualizado com sucesso!');
+                redirect(base_url() . 'index.php/clienteemp/editar/'.$id);
+            } else {
+                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+            }
+        }
 }

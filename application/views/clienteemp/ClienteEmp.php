@@ -1,5 +1,5 @@
   <?php $Verifica = 1; 
-        foreach ($results as $r) {
+        /*foreach ($results as $r) {
             if ($Verifica % 2 != 0) {
                 $Verifica++;
                // echo '<div class="row-fluid" style="margin-top: 0">'; 
@@ -18,9 +18,9 @@
             echo '                    <div class="span12" style="min-height: 260px">';
             echo '                        <form id="formSenha" action="#" method="post" novalidate="novalidate">';
             echo '                            <ul class="site-stats">';
-            echo '                                <li class="span12"><img src="'.base_url().$r->imagem.'"></li>';
+            echo '                                <li class="span12" style="height:15%"><img style="width:15%; height:15%;" src="'.base_url().$r->imagem.'"></li>';
             echo '                                <li class="bg_lb span12" style="margin-left: 0"><strong>Ramo: '.$r->ramo_atividade.'</strong></li>';
-            echo '                                <li class="bg_lg span12" style="margin-left: 0"><strong>'.$r->produtos.'</strong></li>';
+            //echo '                                <li class="bg_lg span12" style="margin-left: 0"><strong>'.substr($r->produtos, 0, 30).'...</strong></li>';
             echo '                            </ul>';                        
             echo '                            <div class="span12" style="margin-left: 0; text-align: right">';
             echo '                                <a  class="btn btn-info"  href="'.base_url()."index.php/ClienteEmp/visualizar/".$r->idclienteemp.'" >Ver mais..</a> ';
@@ -44,6 +44,56 @@
         }
 ?>
 
+*/
+?>
+
+<?php foreach ($results as $r) { ?>        
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span12">
+
+            <div class="row-fluid" style="margin-top:0">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-title">
+                            <span class="icon">
+                                <i class="icon-align-justify"></i>
+                            </span>
+                            <h5><?= $r->descricao?></h5>
+                        </div>
+                        <div class="widget-content ">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td style="width: 25%"><img src="<?= base_url().$r->imagem?>"</td>
+                                        <td> 
+                                            <ul class="site-stats">
+                                                <li class="bg_lb span12" style="margin-left: 0"><strong>Ramo: <?= $r->ramo_atividade?></strong></li>
+                                                <li class="bg_lg span12" style="margin-left: 0"><strong><?= $r->produtos.$r->produtos.  $r->produtos.$r->produtos?>...</strong></li>
+                                           </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <a  class="btn btn-info"  href="<?= base_url()."index.php/ClienteEmp/visualizar/".$r->idclienteemp?>">  Ver mais..</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      
+        
+    </div>
+</div>
+  <?php } ?>
+
+ 
+ 
+
+
 
 <!--<div class="row-fluid" style="margin-top: 0">
 
@@ -52,7 +102,7 @@
             <div class="widget-title">
                 <span class="icon">
                     <i class="icon-th-list"></i>
-		</span>
+                </span>
                 <h5>Empreendedor 1</h5>
             </div>
             <div class="widget-content">
@@ -80,7 +130,7 @@
             <div class="widget-title">
                 <span class="icon">
                     <i class="icon-th-list"></i>
-		</span>
+                </span>
                 <h5>Empreendedor 2</h5>
             </div>
             <div class="widget-content">
@@ -109,7 +159,7 @@
             <div class="widget-title">
                 <span class="icon">
                     <i class="icon-th-list"></i>
-		</span>
+                </span>
                 <h5>Empreendedor 3</h5>
             </div>
             <div class="widget-content">
@@ -136,7 +186,7 @@
             <div class="widget-title">
                 <span class="icon">
                     <i class="icon-th-list"></i>
-		</span>
+                </span>
                 <h5>Empreendedor 3</h5>
             </div>
             <div class="widget-content">

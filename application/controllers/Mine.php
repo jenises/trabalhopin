@@ -466,7 +466,6 @@ class Mine extends CI_Controller
     // método para clientes se cadastratem
     public function cadastrar()
     {
-
         $this->load->model('clientes_model', '', true);
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
@@ -493,6 +492,7 @@ class Mine extends CI_Controller
                 $this->session->set_flashdata('success', 'Cliente adicionado com sucesso!');
                 redirect(base_url() . 'index.php/mine');
             } else {
+                exit("ddd");
                 $this->session->set_flashdata('success', 'Cliente adicionado com sucesso!');
             }
         }

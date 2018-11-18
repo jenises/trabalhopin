@@ -35,7 +35,7 @@ class ClienteEmp_model extends CI_Model
     function getById($id)
     {
         $this->db->select('clienteemp.*, perfilemp.*');
-        $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp');
+        $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp', 'left');
         $this->db->where('clienteemp.idclienteemp', $id);
         $this->db->limit(1);
         return $this->db->get('clienteemp')->row();
@@ -43,12 +43,14 @@ class ClienteEmp_model extends CI_Model
     
     function add($table, $data)
     {
-        $this->db->insert($table, $data);
-        if ($this->db->affected_rows() == '1') {
-            return true;
-        }
         
-        return false;
+        $this->db->insert($table, $data);
+        return $this->addPerfil($this->db->insert_id());
+        /*if ($this->db->affected_rows() == '1') {
+            
+        }
+        */
+        
     }
     
     function edit($table, $data, $fieldID, $ID)
@@ -78,6 +80,39 @@ class ClienteEmp_model extends CI_Model
     {
         return $this->db->count_all($table);
     }
+    
+    private function addPerfil($id) {
+        $this->db->query("insert into perfilemp values(".$id.")");
+        if ($this->db->affected_rows() >= 0) {
+            return true;
+        }
+        else {
+            exit("nao inseriu perfil");
+        }
+        
+        
+    }
+    
+    
+    public function AtualizaLogo($id, $logo) {
+        $this->db->set('imagem', $logo);
+        $this->db->where('idclienteemp', $id);
+        return $this->db->update('perfilemp');
+         
+    }
+    
+    public function AtualizaPerfil($data, $id) {
+        $this->db->where("idclienteemp", $id);
+        $this->db->update('perfilemp', $data);
+        if ($this->db->affected_rows() == '1') {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    
     
     /*public function getOsByCliente($id)
     {

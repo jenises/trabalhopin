@@ -1,3 +1,39 @@
+<link rel="stylesheet" href="<?php echo base_url();?>assets/js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+<script src="<?php echo base_url()?>assets/js/jquery.validate.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+
+
+
+        $("#formLogar").validate({
+          rules:{
+             cpf: {required:true},
+             senha: {required:true},
+      
+          },
+          messages:{
+             cpf: {required: 'Campo Requerido.'},
+             senha: {required: 'Campo Requerido.'},
+          }
+    });
+	});
+
+</script>
+<style type="text/css">
+    label.error{
+         color: #b94a48;
+    }
+    input.error{
+        border-color: #b94a48;
+    }
+    input.valid{
+        border-color: #5bb75b;
+    }
+
+
+</style>
+
 
 <div class="widget-box">
     <div class="widget-title">
@@ -49,7 +85,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align: right"><strong>Quantidade de funcionários</strong></td>
-                                                    <td><?php echo $result->qtd_funcv ?></td>
+                                                    <td><?php echo $result->qtd_func ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="text-align: right"><strong>Quantidade de Clientes</strong></td>
@@ -130,36 +166,35 @@
         </div>
 
 
-<div id="modalLogar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form id="formLogar" action="<?php echo base_url() ?>index.php/mine/cadastrar" method="post">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Pin - Para poder continuar precisamos que você esteja logado!</h3>
-  </div>
-  <div class="modal-body">
-  		
-  	<div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
-    	<div class="span12" style="margin-left: 0"> 
-    		<label for="descricao">CPF*</label>
-    		<input class="span12" id="descricao" type="text" name="descricao"  />
-    		<input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url() ?>"  />
-    	</div>	
-    	<div class="span12" style="margin-left: 0"> 
-    		<div class="span12" style="margin-left: 0"> 
-    			<label for="cliente">Senha*</label>
-    			<input class="span12" id="cliente" type="text" name="cliente"  />
-    		</div>
-    	</div>
+    <div id="modalLogar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/logar" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Pin - Para poder continuar precisamos que você esteja logado!</h3>
+            </div>
+            <div class="modal-body">
 
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-    <button class="btn btn-success">Logar</button>
-  </div>
-  </form>
-</div>
+                <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
+                <div class="span12" style="margin-left: 0"> 
+                    <label for="cpf">CPF*</label>
+                    <input class="span12" id="cpf" type="text" name="cpf"  />
+                    <input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url() ?>"  />
+                </div>	
+                <div class="span12" style="margin-left: 0"> 
+                    <div class="span12" style="margin-left: 0"> 
+                        <label for="senha">Senha*</label>
+                        <input class="span12" id="senha" type="password" name="senha"/>
+                    </div>
+                </div>
 
-              
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-large btn-primary pull-left" data-dismiss="modal" aria-hidden="true" style="">Cadastre-se</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <button class="btn btn-success">Logar</button>
+            </div>
+        </form>
+    </div>
 
                         
 <?php
