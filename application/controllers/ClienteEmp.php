@@ -97,7 +97,7 @@ class ClienteEmp extends CI_Controller
             );
             $id = $this->ClienteEmp_model->add('clienteemp', $data);
             if ($id >= 0) {
-                $this->session->set_flashdata('success', 'Cliente Empreendedor adicionado com sucesso!');
+                $this->session->set_flashdata('success', 'Cliente Empreendedor pré-cadastrado com sucesso!<br> Adicione agora as informações de perfil do empreededor.');
                 redirect(base_url() . 'index.php/clienteemp/editar/'.$id);
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
@@ -402,6 +402,7 @@ class ClienteEmp extends CI_Controller
                 'descricao' => $this->input->post('descricao'),
                 'produtos' => $this->input->post('produtos'),
                 'servicos' => $this->input->post('servicos'),
+                'ramo_atividade' => $this->input->post('ramo'),
                 'qtd_func' => (trim($this->input->post('qtd_func')) == "") ? "0" : $this->input->post('qtd_func'),
                 'qtd_clientes' => (trim($this->input->post('qtd_clientes')) == "") ? "0" : $this->input->post('qtd_clientes'),
                 'linkedin' => $this->input->post('linkedin'),

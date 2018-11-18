@@ -70,7 +70,7 @@
                                         <td> 
                                             <ul class="site-stats">
                                                 <li class="bg_lb span12" style="margin-left: 0"><strong>Ramo: <?= $r->ramo_atividade?></strong></li>
-                                                <li class="bg_lg span12" style="margin-left: 0"><strong><?= $r->produtos.$r->produtos.  $r->produtos.$r->produtos?>...</strong></li>
+                                                <li class="bg_lg span12" style="margin-left: 0"><strong><?= $r->produtos?></strong></li>
                                            </ul>
                                         </td>
                                     </tr>

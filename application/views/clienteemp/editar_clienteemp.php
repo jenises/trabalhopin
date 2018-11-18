@@ -35,7 +35,6 @@
 
 
 </style>
-<?= var_dump($result)?>
 <div class="widget-box">
     <div class="widget-title">
         <ul class="nav nav-tabs">
@@ -92,7 +91,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="text-align: right"><strong>Endereço</strong></td>
+                                            <td style="text-align: right"><strong>Endereço Empresa</strong></td>
                                             <td>
                                                 <div class="controls">
                                                     <input id="qtd_func" type="text" name="qtd_func" value="<?php echo $result->endereco; ?>"  />
@@ -140,6 +139,15 @@
                             <div class="widget-content">
                                 <table class="table table-bordered">
                                     <tbody>
+                                        <tr>
+                                            <td style="text-align: right; width: 30%"><strong>Ramo</strong></td>
+                                            <td>
+                                                <div class="controls">
+                                                    <input id="ramo_atividade" type="text" name="ramo_atividade" value="<?php echo $result->ramo_atividade; ?>"  />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
                                         <tr>
                                             <td style="text-align: right; width: 30%"><strong>Produtos</strong></td>
                                             <td>

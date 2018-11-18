@@ -35,7 +35,7 @@ class ClienteEmp_model extends CI_Model
     function getById($id)
     {
         $this->db->select('clienteemp.*, perfilemp.*');
-        $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp', 'left');
+        $this->db->join('perfilemp', 'perfilemp.idclienteemp = clienteemp.idclienteemp');
         $this->db->where('clienteemp.idclienteemp', $id);
         $this->db->limit(1);
         return $this->db->get('clienteemp')->row();
@@ -84,7 +84,7 @@ class ClienteEmp_model extends CI_Model
     private function addPerfil($id) {
         $this->db->query("insert into perfilemp values(".$id.")");
         if ($this->db->affected_rows() >= 0) {
-            return true;
+            return $id;
         }
         else {
             exit("nao inseriu perfil");
