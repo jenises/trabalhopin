@@ -112,8 +112,6 @@ class ClienteEmp_model extends CI_Model
 
     }
 
-    
-    
     /*public function getOsByCliente($id)
     {
         $this->db->where('clientes_id', $id);
