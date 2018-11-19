@@ -12,9 +12,6 @@ class ClienteInvest extends CI_Controller
     function __construct()
     {
         parent::__construct();
-//        if ((!session_id()) || (!$this->session->userdata('logado'))) {
-//            redirect('mapos/login');
-//        }
             $this->load->helper(array('codegen_helper'));;
             $this->load->model('ClienteInvest_model', '', true);
             $this->data['menuClienteInvest'] = 'clienteinvest';
@@ -27,6 +24,10 @@ class ClienteInvest extends CI_Controller
 
     function gerenciar()
     {
+        if ((!session_id()) || (!$this->session->userdata('logado')&& (!$this->session->userdata('clienteinvest'))) ) {
+            redirect('ClienteInvest/logar');
+        }
+
 
         //if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
         //    $this->session->set_flashdata('error', 'Você não tem permissão para visualizar clientes.');
@@ -245,15 +246,93 @@ class ClienteInvest extends CI_Controller
     }
     
     function logar() {
+         session_destroy();
+         $this->load->view('clienteinvest/login');
         
-        $this->load->library('form_validation');
-        $this->data['custom_error'] = '';
-        $urlAtual = $this->input->post('urlAtual');
-        if ($this->form_validation->run('logar') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
-        } else {
-            $this->session->set_flashdata('success', 'Você está logado!');
-            redirect(base_url().'index.php/ClienteEmp/');
-        }
+//        $this->load->library('form_validation');
+//        $this->data['custom_error'] = '';
+//        $urlAtual = $this->input->post('urlAtual');
+//        if ($this->form_validation->run('logar') == false) {
+//            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+//        } else {
+//            $this->session->set_flashdata('success', 'Você está logado!');
+//            redirect(base_url().'index.php/ClienteEmp/');
+//        }
     }
+    
+    public function cadastrar() {
+        $this->load->model('ClienteInvest_model', '', true);
+       // $this->load->library('form_validation');
+        $this->data['custom_error'] = '';
+
+    //if ($this->form_validation->run('clienteemp') == false) {
+    //        $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+     //   } else {
+     //        exit("ddd");
+        if (trim($this->input->post('nomecliente') != "")) { //pequena gabiarrazinha
+            
+            $data = array(
+                'nomecliente' => $this->input->post('nomecliente'),
+                'documento' => $this->input->post('documento'),
+                'senha' => $this->input->post('senha')
+            );
+
+            if ($this->ClienteInvest_model->add('clienteinvest', $data) == true) {
+                $this->session->set_flashdata('success', 'Cliente pré-cadastrado com sucesso!');
+                $this->load->view('clienteinvest/login', "");
+                //redirect(base_url() . 'clienteinvest/login');
+            } else {
+               exiy("nao é pra cair aqui!!");
+                $this->session->set_flashdata('success', 'Cliente adicionado com sucesso!');
+            }
+            
+        }
+        else {
+            $this->load->view('clienteinvest/cadastrar_invest', "");
+        }
+        
+        //}
+       // $data = ''; 
+       
+    }
+    
+    
+        public function verificarLogin()
+    {
+        header('Access-Control-Allow-Origin: '.base_url());
+        header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+        header('Access-Control-Max-Age: 1000');
+        header('Access-Control-Allow-Headers: Content-Type');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('documento', 'Documento', 'required|trim');
+        $this->form_validation->set_rules('senha', 'Senha', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $json = array('result' => false, 'message' => validation_errors());
+            echo json_encode($json);
+        } else {
+            $cpf = $this->input->post('documento');
+            $password = $this->input->post('senha');
+            $this->load->model('ClienteInvest_model');
+            $user = $this->ClienteInvest_model->checkCPF($cpf);
+
+            if ($user) {
+                if (password_verify($password, password_hash($user->senha, PASSWORD_DEFAULT))) {
+                    $session_data = array('clienteinvest' => true, 'nome' => $user->nomecliente, 'documento' => $user->documento, 'idclienteinvest' => $user->idclienteinvest, 'logado' => true);
+                    $this->session->set_userdata($session_data);
+                    $json = array('result' => true);
+                    echo json_encode($json);
+                } else {
+                    $json = array('result' => false, 'message' => 'Os dados de acesso estão incorretos.');
+                    echo json_encode($json);
+                }
+            } else {
+                $json = array('result' => false, 'message' => 'Usuário não encontrado, verifique se suas credenciais estão corretass.');
+                echo json_encode($json);
+            }
+        }
+        die();
+    }
+
+
+    
 }

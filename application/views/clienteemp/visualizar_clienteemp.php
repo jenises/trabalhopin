@@ -157,7 +157,13 @@
                         </div>
                         <div class="span12" style="padding: 1%; margin-left: 0">
                             <div class="span6 offset3" style="text-align: center">
-                                <a href="#modalLogar" data-toggle="modal" class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>
+                                <?php if ((!session_id()) || (!$this->session->userdata('logado')&& (!$this->session->userdata('clienteinvest'))) ) { 
+                                    echo '<a href="#modalLogar" data-toggle="modal" class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>';
+                                }
+                                else {
+                                    echo '<a href="#modalInvestir" data-toggle="modal" class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>';
+                                }
+                                ?>
                                 <a href="<?php echo base_url() ?>index.php/ClienteEmp" id="" class="btn btn-large"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
@@ -167,7 +173,7 @@
 
 
     <div id="modalLogar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/logar" method="post">
+        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/verificarLogin" method="post">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Pin - Para poder continuar precisamos que você esteja logado!</h3>
@@ -177,7 +183,7 @@
                 <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
                 <div class="span12" style="margin-left: 0"> 
                     <label for="cpf">CPF*</label>
-                    <input class="span12" id="cpf" type="text" name="cpf"  />
+                    <input class="span12" id="documento" type="text" name="documento"  />
                     <input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url() ?>"  />
                 </div>	
                 <div class="span12" style="margin-left: 0"> 
@@ -189,14 +195,46 @@
 
             </div>
             <div class="modal-footer">
-                <button class="btn btn-large btn-primary pull-left" data-dismiss="modal" aria-hidden="true" style="">Cadastre-se</button>
+                <a  href="<?php echo base_url() ?>index.php/ClienteInvest/cadastrar" class="btn btn-large btn-primary pull-left" data-dismiss="" aria-hidden="true" style="">Cadastre-se</a>
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
                 <button class="btn btn-success">Logar</button>
             </div>
         </form>
     </div>
 
-                        
+
+    
+    <div id="modalInvestir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/verificarLogin" method="post">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Empresa : <?php echo $result->descricao ?> </h3>
+            </div>
+            <div class="modal-body">
+
+                <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
+                <div class="span12" style="margin-left: 0"> 
+                    <label for="cpf">Informa o valor a ser investido</label>
+                    <input class="span5" id="documento" type="text" name="documento"  />
+                    <input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url() ?>"  />
+                </div>	
+                <div class="span12" style="margin-left: 0"> 
+                    <div class="span12" style="margin-left: 0"> 
+                        <label for="data">Data</label>
+                        <input class="span5" id="data" type="data" name="senha"/>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <a href=""  class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>
+            </div>
+        </form>
+    </div>
+    
+    
+    
 <?php
 /*foreach ($results as $r) {
     $dataInicial = date(('d/m/Y'), strtotime($r->dataInicial));
@@ -221,5 +259,76 @@
  
  */?>
         </div>
-    </div>
-</div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                $('#email').focus();
+                $("#formLogin").validate({
+                     rules :{
+                          email: { required: true, email: true},
+                          senha: { required: true}
+                    },
+                    messages:{
+                          email: { required: 'Campo Requerido.', email: 'Insira Email válido'},
+                          senha: {required: 'Campo Requerido.'}
+                    },
+                   submitHandler: function( form ){  
+                         var dados = $( form ).serialize();
+                         $('#btn-acessar').addClass('disabled');
+                         $('#progress-acessar').removeClass('hide');
+                    
+                        $.ajax({
+                          type: "POST",
+                          url: "<?php echo base_url();?>index.php/ClienteInvest/verificarLogin?ajax=true",
+                          data: dados,
+                          dataType: 'json',
+                          success: function(data)
+                          {
+                            if(data.result == true){
+                                window.location.href = "<?php echo base_url();?>index.php/ClienteEmp";
+                            }
+                            else{
+                                $('#btn-acessar').removeClass('disabled');
+                                $('#progress-acessar').addClass('hide');
+                                
+                                $('#call-modal').trigger('click');
+                            }
+                          }
+                          });
+
+                          return false;
+                    },
+
+                    errorClass: "help-inline",
+                    errorElement: "span",
+                    highlight:function(element, errorClass, validClass) {
+                        $(element).parents('.control-group').addClass('error');
+                    },
+                    unhighlight: function(element, errorClass, validClass) {
+                        $(element).parents('.control-group').removeClass('error');
+                        $(element).parents('.control-group').addClass('success');
+                    }
+                });
+
+            });
+
+        </script>
+
+
+
+        <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notification</a>
+
+        <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 id="myModalLabel">MapOS</h4>
+          </div>
+          <div class="modal-body">
+            <h5 style="text-align: center">Os dados de acesso estão incorretos, por favor tente novamente!</h5>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Fechar</button>
+
+          </div>
+        </div>
+    

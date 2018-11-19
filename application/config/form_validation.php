@@ -324,8 +324,8 @@ $config =  array('clienteinvest' => array(array(
                                 ))
                 ,
                 'logar' => array(array(
-                                    'field' => 'cpf',
-                                    'lebel' => 'CPF',
+                                    'field' => 'documento',
+                                    'label' => 'CPF',
                                     'rules' => 'trim|required'
                                 ),
                                 array(

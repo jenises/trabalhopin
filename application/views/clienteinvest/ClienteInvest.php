@@ -1,6 +1,8 @@
 
 
-<?php /*if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {*/ ?>
+<?php 
+
+/*if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {*/ ?>
     <a href="<?php echo base_url();?>index.php/ClienteInvest/adicionar" class="btn btn-success">
         <i class="icon-plus icon-white"></i> Adicionar Cliente Investidor</a>    
 

@@ -76,6 +76,15 @@ class ClienteInvest_model extends CI_Model
         return $this->db->count_all($table);
     }
     
+    
+    function checkCPF($cpf) {
+        $this->db->where('documento', $cpf);
+        //$this->db->where('situacao', 1);
+        $this->db->limit(1);
+        return $this->db->get('clienteinvest')->row();
+
+    }
+        
     /*public function getOsByCliente($id)
     {
         $this->db->where('clientes_id', $id);
