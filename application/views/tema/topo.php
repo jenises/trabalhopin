@@ -69,7 +69,7 @@
                     };
                     ?>"><a href="#modalCadastrar" data-toggle="modal"><i class="icon icon-group"></i> <span>Cadastre-se </span></a></li>
                     <?php 
-                      if ((!session_id()) || (!$this->session->userdata('logado')&& (!$this->session->userdata('clienteinvest'))) ) {
+                      if ((session_id()) || ($this->session->userdata('logado')&& ($this->session->userdata('clienteinvest'))) ) {
                           echo '<li><a href="'.base_url().'index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>';
                       }
 
