@@ -68,8 +68,12 @@
                         echo 'active';
                     };
                     ?>"><a href="#modalCadastrar" data-toggle="modal"><i class="icon icon-group"></i> <span>Cadastre-se </span></a></li>
-                    <?php //} ?>
-                    <li><a href="<?php echo base_url() ?>index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>
+                    <?php 
+                      if ((!session_id()) || (!$this->session->userdata('logado')&& (!$this->session->userdata('clienteinvest'))) ) {
+                          echo '<li><a href="'.base_url().'index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>';
+                      }
+
+?>                    
                 <!--<?php// if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>!-->
                     <li class="<?php
                     if (isset($menuProdutos)) {
