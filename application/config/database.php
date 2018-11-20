@@ -7,8 +7,8 @@ $query_builder = true;
 
 
 $db['default'] = array(
-    'dsn'   => 'pgsql:host=localhost;port=5432;dbname=pin;user=postgres;password=123456',
-  //  'dsn'   => 'pgsql:host=ec2-184-73-199-189.compute-1.amazonaws.com;port=5432;dbname=dcaln4kct8ecdt;user=jwzlgtnvsiuzen;password=bdccebbd727cab2089233f9854f95b735640a6f817f10495e88f92bd1ba5bc48',
+  //  'dsn'   => 'pgsql:host=localhost;port=5432;dbname=pin;user=postgres;password=123456',
+    'dsn'   => 'pgsql:host=ec2-184-73-199-189.compute-1.amazonaws.com;port=5432;dbname=dcaln4kct8ecdt;user=jwzlgtnvsiuzen;password=bdccebbd727cab2089233f9854f95b735640a6f817f10495e88f92bd1ba5bc48',
   //  'dsn' => '',
    // 'hostname' => 'localhost',
    // 'username' => 'postgres',
