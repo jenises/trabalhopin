@@ -27,11 +27,53 @@
         <!--top-Header-menu-->
         <div id="user-nav" class="navbar navbar-inverse">
             <ul class="nav">
+                <?php
+                    
+                    if ( (session_id() ) && ( $this->session->userdata('logado') ) ) {
+                        if ($this->session->userdata('clienteinvest')) {
+                            echo '<li class="">';
+                            echo '    <a title="" href="#">';
+                            echo '         <i class="icon icon-user"></i> <span class="text">Logado Como: Investidor('. $this->session->userdata('nome').')</span>';
+                            echo '    </a> ';
+                            echo '</li> ';
+                            echo '<li class="">';
+                            echo '    <a title="" href="'.site_url().'/ClienteInvest/Editar/'.$this->session->userdata('idclienteinvest').'">';
+                            echo '         <i class="icon icon-star"></i> <span class="text">Minha Conta</span>';
+                            echo '    </a> ';
+                            echo '</li> ';
+                            echo '<li class="">';
+                            echo '    <a title="" href="'.site_url().'/ClienteInvest/logar/">';
+                            echo '         <i class="icon icon-star"></i> <span class="text">Sair</span>';
+                            echo '    </a> ';
+                            echo '</li>';
+                        }  else if ($this->session->userdata('clienteemp')) {
+                                echo '<li class="">';
+                                echo '    <a title="" href="#">';
+                                echo '         <i class="icon icon-user"></i> <span class="text">Logado Como: Empreendedor('. $this->session->userdata('descricao').')</span>';
+                                echo '    </a> ';
+                                echo '</li> ';
+                                echo '<li class="">';
+                                echo '    <a title="" href="'.site_url().'/ClienteEmp/editar/'.$this->session->userdata('idclienteemp').'">';
+                                echo '         <i class="icon icon-star"></i> <span class="text">Minha Conta</span>';
+                                echo '    </a> ';
+                                echo '</li> ';
+                                echo '<li class="">';
+                                echo '    <a title="" href="'.site_url().'/ClienteInvest/logar/">';
+                                echo '         <i class="icon icon-star"></i> <span class="text">Sair</span>';
+                                echo '    </a> ';
+                                echo '</li> ';
+                        }
+                    }
+                    else {
+                        echo '<li class="">';
+                        echo '     <a href="#modalCadastrar" data-toggle="modal"><i class="icon icon-group"></i> <span>Cadastre-se </span>';
+                        echo '     </a>';
+                        echo '</li>';       
+                    }
+                    
                 
-                 <li class="">
-                     <a title="" href="<?php echo site_url(); ?>/mapos/minhaConta">
-                         <i class="icon icon-star"></i> <span class="text">Cadastre-se </span>
-                     </a></li>       
+                ?>
+
 
             </ul>
 
@@ -69,11 +111,8 @@
                     };
                     ?>"><a href="#modalCadastrar" data-toggle="modal"><i class="icon icon-group"></i> <span>Cadastre-se </span></a></li>
                     <?php 
-                      if ((session_id()) || ($this->session->userdata('logado')&& ($this->session->userdata('clienteinvest'))) ) {
-                          echo '<li><a href="'.base_url().'index.php/clienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>';
-                      }
-
-?>                    
+                          echo '<li><a href="'.base_url().'index.php/ClienteInvest"><i class="icon icon-group"></i> <span>Clientes Investidores </span></a></li>';
+                    ?>                    
                 <!--<?php// if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) { ?>!-->
                     <li class="<?php
                     if (isset($menuProdutos)) {
@@ -98,12 +137,6 @@
                     };
                     ?>"><!--<a href="<?php echo base_url() ?>index.php/vendas"><i class="icon icon-shopping-cart"></i> <span>Vendas</span></a></li>!-->
                     <?php } ?>
-
-                    <li class="<?php
-                    if (isset($menuArquivos)) {
-                        echo 'active';
-                    };
-                    ?>"><a href="<?php echo base_url() ?>index.php/arquivos"><i class="icon icon-hdd"></i> <span>Arquivos</span></a></li>
 
                 <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vLancamento')) { ?>
                     <li class="submenu <?php

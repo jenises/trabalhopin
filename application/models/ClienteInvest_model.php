@@ -84,7 +84,17 @@ class ClienteInvest_model extends CI_Model
         return $this->db->get('clienteinvest')->row();
 
     }
+      
+    function addInvest($data) {
+         $this->db->insert("cotas", $data);
+        if ($this->db->affected_rows() == '1') {
+            return true;
+        }
         
+        return false;
+
+    }
+    
     /*public function getOsByCliente($id)
     {
         $this->db->where('clientes_id', $id);

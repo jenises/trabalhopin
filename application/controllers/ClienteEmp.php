@@ -68,6 +68,7 @@ class ClienteEmp extends CI_Controller
     }
     
     function adicionar() {
+        
         $id = 0;
        // if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {
             //$this->session->set_flashdata('error', 'Você não tem permissão para adicionar clientes.');
@@ -97,7 +98,11 @@ class ClienteEmp extends CI_Controller
             );
             $id = $this->ClienteEmp_model->add('clienteemp', $data);
             if ($id >= 0) {
+                
                 $this->session->set_flashdata('success', 'Cliente Empreendedor pré-cadastrado com sucesso!<br> Adicione agora as informações de perfil do empreededor.');
+                $session_data = array('clienteemp' => true, 'nome' => $data["nome"], 'idclienteemp' => $id, 'logado' => true);
+                $this->session->set_userdata($session_data);
+
                 redirect(base_url() . 'index.php/ClienteEmp/editar/'.$id);
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';

@@ -118,10 +118,10 @@ class ClienteInvest extends CI_Controller
         }
 
 
-        if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar clientes.');
-            redirect(base_url());
-        }
+   //     if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
+    //        $this->session->set_flashdata('error', 'Você não tem permissão para editar clientes.');
+    //        redirect(base_url());
+    //    }
 
         $this->load->library('form_validation');
         $this->data['custom_error'] = '';
@@ -143,16 +143,16 @@ class ClienteInvest extends CI_Controller
                 'cep' => $this->input->post('cep')
             );
 
-            if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
+            if ($this->ClienteInvest_model->edit('clienteinvest', $data, 'idclienteinvest', $this->input->post('idclienteinvest')) == true) {
                 $this->session->set_flashdata('success', 'Cliente editado com sucesso!');
-                redirect(base_url() . 'index.php/clientes/editar/'.$this->input->post('idClientes'));
+                redirect(base_url() . 'index.php/ClienteInvest/editar/'.$this->input->post('idclienteinvest'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
             }
         }
 
 
-        $this->data['result'] = $this->clientes_model->getById($this->uri->segment(3));
+        $this->data['result'] = $this->ClienteInvest_model->getById($this->uri->segment(3));
         $this->data['view'] = 'clienteinvest/editarCliente';
         $this->load->view('tema/topo', $this->data);
 
@@ -334,5 +334,25 @@ class ClienteInvest extends CI_Controller
     }
 
 
+ function investir() {
+      exit(var_dump($_POST));
+        $data = array(
+                'idclienteemp' => $this->input->post('idclienteemp'),
+                'idclienteinvest' => $this->input->post('idclienteinvest'),
+                'valor' => $this->input->post('valor'),
+                'data_compra' => $this->input->post('data_compra'),
+                'obs' => $this->input->post('observacao'),
+        );
+        
+        if ($this->ClienteInvest_model->addInvest($data) == true) {
+                $this->session->set_flashdata('success', 'Investimento adicionado com sucesso!');
+                //redirect(base_url() . 'index.php/clienteinvest/adicionar/');
+            } else {
+                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+            }
+
+
+ }
+    
     
 }

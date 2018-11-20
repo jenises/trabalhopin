@@ -13,10 +13,10 @@
 } ?>
                 <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal" >
                     <div class="control-group">
-                        <?php echo form_hidden('idClientes', $result->idClientes) ?>
+                        <?php echo form_hidden('idClientes', $result->idclienteinvest) ?>
                         <label for="nomeCliente" class="control-label">Nome<span class="required">*</span></label>
                         <div class="controls">
-                            <input id="nomeCliente" type="text" name="nomeCliente" value="<?php echo $result->nomeCliente; ?>"  />
+                            <input id="nomeCliente" type="text" name="nomeCliente" value="<?php echo $result->nomecliente; ?>"  />
                         </div>
                     </div>
                     <div class="control-group">
@@ -96,7 +96,7 @@
                         <div class="span12">
                             <div class="span6 offset3">
                                 <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Alterar</button>
-                                <a href="<?php echo base_url() ?>index.php/clientes" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
+                                <a href="<?php echo base_url() ?>index.php/ClienteEmp" id="" class="btn"><i class="icon-arrow-left"></i> Voltar</a>
                             </div>
                         </div>
                     </div>

@@ -21,18 +21,20 @@
                             <?php echo $this->session->flashdata('error');?>
                        </div>
                     <?php }?>
-                <div class="control-group normal_text"> <h3><img src="<?php echo base_url()?>assets/img/logo.png" alt="Logo" /></h3></div>
+                <div class="control-group normal_text"> <h3><a href="<?php echo base_url()?>index.php/ClienteEmp"><img src="<?php echo base_url()?>assets/img/logo.png" alt="Logo" /></a></h3></div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lg"><i class="icon-user"></i></span><input id="documento" name="documento" type="text" placeholder="CPF" />
+                            <span class="add-on bg_lg"><i class="icon-user"></i></span>
+                            <input id="documento" name="documento" type="text" placeholder="CPF" />
                         </div>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="controls">
                         <div class="main_input_box">
-                            <span class="add-on bg_lb"><i class="icon-lock"></i></span><input name="senha" type="password" placeholder="Senha" />
+                            <span class="add-on bg_lb"><i class="icon-lock"></i></span>
+                            <input name="senha" id="senha"  type="password" placeholder="Senha" />
                         </div>
                     </div>
                 </div>
@@ -55,14 +57,14 @@
         <script type="text/javascript">
             $(document).ready(function(){
 
-                $('#email').focus();
+                $('#documento').focus();
                 $("#formLogin").validate({
                      rules :{
-                          email: { required: true, email: true},
+                          documento: { required: true},
                           senha: { required: true}
                     },
                     messages:{
-                          email: { required: 'Campo Requerido.', email: 'Insira Email válido'},
+                          documento: { required: 'Campo Requerido.'},
                           senha: {required: 'Campo Requerido.'}
                     },
                    submitHandler: function( form ){  
@@ -114,7 +116,7 @@
         <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 id="myModalLabel">MapOS</h4>
+            <h4 id="myModalLabel">PIN- SMART INVEST</h4>
           </div>
           <div class="modal-body">
             <h5 style="text-align: center">Os dados de acesso estão incorretos, por favor tente novamente!</h5>

@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 <script src="<?php echo base_url()?>assets/js/jquery.validate.js"></script>
 <script type="text/javascript">
-	jQuery(document).ready(function($) {
+/*	jQuery(document).ready(function($) {
 
 
 
@@ -18,6 +18,7 @@
           }
     });
 	});
+        */
 
 </script>
 <style type="text/css">
@@ -205,7 +206,7 @@
 
     
     <div id="modalInvestir" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/verificarLogin" method="post">
+        <form id="formLogar" action="<?php echo base_url() ?>index.php/ClienteInvest/investir" method="post">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h3 id="myModalLabel">Empresa : <?php echo $result->descricao ?> </h3>
@@ -214,21 +215,31 @@
 
                 <div class="span12 alert alert-info" style="margin-left: 0"> Obrigatório o preenchimento dos campos com asterisco.</div>
                 <div class="span12" style="margin-left: 0"> 
-                    <label for="cpf">Informa o valor a ser investido</label>
-                    <input class="span5" id="documento" type="text" name="documento"  />
+                    <label for="valor">Informar o valor a ser investido</label>
+                    <input class="span4 money" name="valor" id="valor" type="text" name="valor"/>
+                    
                     <input id="urlAtual" type="hidden" name="urlAtual" value="<?php echo current_url() ?>"  />
+                    <input id="idclienteemp" name="idclienteemp"type="hidden"  value="<?php echo  $result->idclienteemp ?>"  />
+                    <input id="idclienteinvest" type="hidden" name="idclienteinvest" value="<?php echo $this->session->userdata('idclienteinvest') ?>"  />
                 </div>	
                 <div class="span12" style="margin-left: 0"> 
-                    <div class="span12" style="margin-left: 0"> 
-                        <label for="data">Data</label>
-                        <input class="span5" id="data" type="data" name="senha"/>
+                    <div class="span4" >
+                            <label for="data_compra">Data Investimento*</label>
+                            <input class="span12 datepicker" id="data_compra" type="text" name="data_compra"  />
+                    </div>
+                </div>
+                <div class="span12" style="margin-left: 0"> 
+                    <div class="span12" >
+                            <label for="data_compra">Observações</label>
+                            <textarea id="observacoes" name="observacoes"></textarea>
                     </div>
                 </div>
 
+
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-                <a href=""  class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>
+                <button class="btn btn-large" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <a href="<?php echo base_url() ?>index.php/ClienteInvest/investir"  class="btn btn-success btn-large" id="btnContinuar"><i class="icon-credit-card icon-large icon-white"></i> Investir</a>
             </div>
         </form>
     </div>
@@ -259,17 +270,19 @@
  
  */?>
         </div>
+        <script src="<?php echo base_url();?>assets/js/maskmoney.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-
-                $('#email').focus();
-                $("#formLogin").validate({
+                $(".money").maskMoney();
+                $(".datepicker" ).datepicker({ dateFormat: 'dd/mm/yy' });
+                $('#documento').focus();
+                $("#formLogar").validate({
                      rules :{
-                          email: { required: true, email: true},
+                          documento: { required: true},
                           senha: { required: true}
                     },
                     messages:{
-                          email: { required: 'Campo Requerido.', email: 'Insira Email válido'},
+                          documento: { required: 'Campo Requerido.'},
                           senha: {required: 'Campo Requerido.'}
                     },
                    submitHandler: function( form ){  
@@ -285,7 +298,7 @@
                           success: function(data)
                           {
                             if(data.result == true){
-                                window.location.href = "<?php echo base_url();?>index.php/ClienteEmp";
+                                window.location.href = "<?php echo current_url();?>";
                             }
                             else{
                                 $('#btn-acessar').removeClass('disabled');
@@ -321,7 +334,7 @@
         <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 id="myModalLabel">MapOS</h4>
+            <h4 id="myModalLabel">PIN - SMART INVEST</h4>
           </div>
           <div class="modal-body">
             <h5 style="text-align: center">Os dados de acesso estão incorretos, por favor tente novamente!</h5>
